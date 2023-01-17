@@ -1,0 +1,8 @@
+/* импортирую стили из файла */
+@import "App.css";
+
+
+h1 {
+    text-align: center;
+    color: rgb(2, 14, 6);
+}

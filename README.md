@@ -338,3 +338,171 @@ VirtualDOM
             }
 
             export default App;
+
+2. Вынесем \<main>...\</main> из файла **App.js**
+   
+   > для этого, создадим файл: **./src/components$** touch **Main.js**
+   
+   и перенесем из App.js весь внутри тега **\<main>...\</main>**
+
+        import React, { Component } from "react";
+
+
+        class Main extends Component{
+            render(){
+                return(
+                    <div>
+                        <h1>Hello Main</h1>
+                    </div>
+                )
+            }
+        }
+
+        export default Main
+
+    <hr>
+    
+    перенесем стили из **App.css** в **Main.js**: 
+    > **./src/styles$** touch **Main.js**
+
+    
+
+        /* импортирую стили из файла */
+        @import "App.css";
+
+
+        h1 {
+            text-align: center;
+            color: rgb(2, 14, 6);
+        }
+
+    <hr>
+    В результате файлы **App.css** и **App.js** будут выглядеть так:
+
+    > App.css
+
+        /* подключение локальных шрифтов */
+        @font-face {
+            src: url('../../fonts/OpenSans-Regular.ttf');
+            font-family: "OpenSans Regular";
+        }
+
+        @font-face {
+            src: url('../../fonts/OpenSans-Bold.ttf');
+            font-family: "OpenSans Bold";
+        }
+
+        @font-face {
+            src: url('../../fonts/OpenSans-ExtraBold.ttf');
+            font-family: "OpenSans ExtraBold";
+        }
+
+
+        html,
+        body {
+            padding: 10px;
+            margin: 10px;
+        }
+
+    > App.js
+
+        import React, { Component } from "react"; // from React import Component
+
+        // import styles
+        import "../styles/App.css";
+
+        // import Header object
+        import Header from "./Header.js";
+
+        // import Main object
+        import Main from "./Main.js"
+
+        class App extends Component {
+            // React renders jsx --> html
+            render() {
+                return (
+                    <>
+                        {/* using Header object */}
+                        <Header />
+                        <Main />
+                    </>
+                )
+            }
+        }
+
+        export default App;
+
+
+<h3>3. В <b>Header.js</b> класс Header переделаем в функцию и добавим вызов действия в консоль при нажатии на кнопку:</h3>
+
+        import React, { Component } from "react";
+        import "../styles/Header.css";
+
+        function Header() {
+
+            let buttonName = "Click Here!"
+
+            const handleClick = () => {
+                console.log('hello');
+            }
+
+            return (
+                <header>
+                    This is header
+                    <button className="click-here" onClick={handleClick}>{buttonName}</button>
+                </header>
+            )
+        }
+
+        export default Header
+<hr>
+
+## props
+
+Передать переменную из App.js в Header.js можно посредствам параметра **props**
+
+> App.js
+
+        ...
+        ...
+
+        class App extends Component {
+            
+            render() {
+                return (
+                    <>
+                ---->   <Header buttonName={"Click Here!"}/>
+                        <Main />
+                    </>
+                )
+            }
+        }
+
+        export default App;
+> Header.js
+
+Через ключевое слово **props**, функция получает передаваемые ей из **App.js** параметры.
+
+В данном случае, из **App.js** в **props** передается аргумент **buttonName**,
+который вызывается через переменную **props.buttonName**:
+
+        ...
+        ...
+
+      --->  function Header(props) {
+                let [count, setNewCount] = useState(0);
+                const handleClick = () => {
+                    setNewCount(count + 1)
+                };
+
+                return (
+                    <header>
+                        This is header
+                        <button className="click-here" onClick={handleClick}>
+                    ---->    {props.buttonName}, is clicked: {count} times
+                        </button>
+                    </header>
+                )
+            }
+
+            export default Header
