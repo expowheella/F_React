@@ -222,7 +222,8 @@ My notes based on SF lecture
 
                 };
 
-13. > npm install webpack-dev-server
+13. Установим webpack сервер, чтобы не делать каждый раз перезагрузку страницы:
+    > npm install webpack-dev-server
 
     make changes to *start script* in **package.json** file:
 
@@ -231,3 +232,109 @@ My notes based on SF lecture
             ...
             ...
         },
+
+
+--------------------------
+VirtualDOM
+--------------------------
+Если репозиторий был скачан, то сначала нужно выполнить команду:
+
+### `npm install`
+
+Главный файл React --> **index.js**. 
+В него импортируется компонент **App.js**
+
+        index.js
+            ^
+            |
+            | 
+            App.js
+                ^
+                | 
+                | App.css, 
+                | class App
+                |
+                |
+              Header.js
+                    ^
+                    |
+                    | Header.css
+                    | class Header
+                    |
+
+
+
+1. Добавим header в компонент реката.
+   Для этого, в папке components создадим новый файл **Header.js**:
+
+    > **./src/components$** touch Headers.js
+
+    и добавим в него следующие строки:
+   
+        import React, {Component} from "react";
+        import "../styles/Header.css"
+
+
+        class Header extends Component {
+
+            render(){
+                return(
+                    <header>This is header</header>
+                )
+            }
+        }
+
+        export default Header
+
+        
+     * В начале импортируем объект Components из React
+
+     * Создаем новый класс для нашего компонента, который расширяет объект Component из библиотеки React
+
+     * Далее рендерим JSX код в HTML используя функцию render()
+
+    <hr>
+
+    ### Теперь добавим стили к данному компоненту, создав файл: 
+    > **/src/styles$** touch **Header.css**:
+
+
+        @import "App.css";
+
+
+        header {
+            color: wheat;
+            background-color: rgb(29, 41, 26);
+            font-size: 40px;
+            height: 60px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    <hr>
+
+    ### Теперь добавим вновь созданный объект Header к нашему базовому компоненту **App.js**:
+
+            import React, { Component } from "react";
+            import "../styles/App.css";
+
+       ---> import Header from "./Header.js";
+
+            class App extends Component {
+                render() {
+                    return (
+                        <>
+                      ----> <Header />
+                            <main>
+                                <div>
+                                    <h1>Hello React</h1>
+                                </div>
+                            </main>
+                        </>
+                    )
+                }
+            }
+
+            export default App;

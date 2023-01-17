@@ -1,8 +1,27 @@
-div {
+/* подключение локальных шрифтов */
+@font-face {
+    src: url('../../fonts/OpenSans-Regular.ttf');
+    font-family: "OpenSans Regular";
+}
+
+@font-face {
+    src: url('../../fonts/OpenSans-Bold.ttf');
+    font-family: "OpenSans Bold";
+}
+
+@font-face {
+    src: url('../../fonts/OpenSans-ExtraBold.ttf');
+    font-family: "OpenSans ExtraBold";
+}
+
+
+html,
+body {
     padding: 10px;
+    margin: 10px;
 }
 
 h1 {
     text-align: center;
-    color: rgb(194, 24, 185);
+    color: rgb(2, 14, 6);
 }
