@@ -506,3 +506,51 @@ VirtualDOM
             }
 
             export default Header
+
+<hr>
+<h2>Countries</h2>
+Add example with downloading countries
+
+1. In order to download from the internet, we are using here **axios**
+
+    ### `npm install axios`
+
+2. Add new component:
+
+    ### <h4 style="color:lightgreen">**./src/components$** touch **Countries.js**</h4><br>
+
+    > Countries.js
+
+        import React from "react";
+
+        function Countries() {
+            // get countries from web
+            
+
+            return (
+                <h1>Hello</h1>
+            )
+        }
+
+        export default Countries;
+
+3. Using **Countries** in **Main.js**:
+    
+    > Main.js
+
+        import React from "react";
+        import "../styles/Main.css"
+        import Countries from "./Countries";
+
+
+        function Main() {
+
+            return (
+                <main>
+            --->    <Countries />
+                </main>
+            )
+        }
+
+
+        export default Main

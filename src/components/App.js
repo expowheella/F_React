@@ -1,4 +1,4 @@
-import React, { Component } from "react"; // from React import Component
+import React, { Fragment } from "react"; // from React import Component
 
 // import styles
 import "../styles/App.css";
@@ -9,17 +9,18 @@ import Header from "./Header.js";
 // import Main object
 import Main from "./Main.js"
 
-class App extends Component {
-    // React renders jsx --> html
-    render() {
-        return (
-            <>
-                {/* using Header object */}
-                <Header buttonName={"Click Here!"}/>
-                <Main />
-            </>
-        )
-    }
+function App() {
+
+    const buttonName = "Click Here!"
+
+    return (
+        <Fragment>
+            {/* using Header object */}
+            <Header buttonName={buttonName} />
+            <Main />
+        </Fragment>
+    )
 }
+
 
 export default App;
