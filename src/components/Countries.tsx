@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import * as React from "react";
 import axios from "axios";
 import "../styles/Countries.css"
 import Table from 'react-bootstrap/Table'
-import Country from "./Country.js"
+import Country from "./Country"
 
 function Countries() {
-    const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = React.useState([]);
 
     if (!countries.length) {
         // if not countries, get countries from web

@@ -667,3 +667,76 @@ Add example with downloading countries
         }
 
         export default Countries;
+
+<hr>
+
+## **F1.5. TypeScript**
+
+### `npm install typescript @types/react @types/react-dom`
+
+### `npm install ts-loader`
+
+<br>
+
+Make changes to webpack.config.js:
+> webpack.config.js
+
+
+        const path = require('path');
+        const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+        module.exports = {
+            mode: 'development',
+    ---->   entry: "./src/index.tsx",
+            output: {
+                path: path.join(__dirname, "/dist"),
+                filename: "bundle.js"
+            },
+            module: {
+                rules: [
+                    {
+    ------------->      test: /\.(ts|tsx)$/,
+                        exclude: /node_modules/,
+                        use: {
+    ------------->      loader: "ts-loader"
+                        }
+                    },
+                    {
+                        test: /\.css$/,
+                        use: ["style-loader", "css-loader"]
+                    }
+                ]
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    template: "./src/index.html"
+                })
+            ]
+        };
+
+### `./$ touch tsconfig.json`
+
+<br>
+
+> tsconfig.json
+
+        {
+            "compilerOptions": {
+                "jsx": "react",
+            },
+            "exclude": [
+                "node_modules"
+            ]
+        }
+
+
+Make changes:
+
+> index.js --> index.tsx
+
+
+    --> import * as React from "react";
+    --> import { render } from "react-dom";
+        import App from "./components/App";
+
+    --> render(<App/>, document.getElementById("root"));

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import * as React from "react";
 import Button from 'react-bootstrap/Button'
 import "../styles/Country.css"
 
 
 function Country(props) {
-    const [selected, addCity] = useState(false);
+    const [selected, addCity] = React.useState(false);
 
     return (
         // if selected = true: className = "selected-country", else: className = "nothing"
