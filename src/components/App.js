@@ -9,6 +9,10 @@ import Header from "./Header.js";
 // import Main object
 import Main from "./Main.js"
 
+// import styles from bootstrap
+import "bootstrap/dist/css/bootstrap.min.css"
+
+
 function App() {
 
     const buttonName = "Click Here!"

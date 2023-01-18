@@ -554,3 +554,116 @@ Add example with downloading countries
 
 
         export default Main
+
+<hr>
+
+##  **Create beautiful table with bootstrap**
+
+### `npm install react-bootstrap bootstrap`
+
+<br>
+
+1. Import table styles from bootstrap to js file:
+
+    > Countries.js
+
+        import Table from 'react-bootstrap/Table'
+
+        ...
+        ...
+
+           return (
+                <Table>
+                    ...
+                    ...
+                    ...
+                </Table>
+            )
+        
+        ...
+
+2. import styles from bootstrap to **App.js**
+
+    > App.js
+
+        
+        import "bootstrap/dist/css/bootstrap.min.css"
+
+<hr>
+
+## **Add/Remove to the beautiful table**
+
+### <h4 style="color:lightgreen">>> **./src/components$** touch **Country.js**</h4>
+
+<br>
+
+#### `Country.js`
+
+        import React, { useState } from "react";
+        import Button from 'react-bootstrap/Button'
+        import "../styles/Country.css"
+
+
+        function Country(props) {
+            const [selected, addCity] = useState(false);
+
+            return (
+                // if selected = true: className = "selected-country", else: className = "nothing"
+                <tr className={!selected ? "" : "selected-country"}>
+                    <td>{props.country.city}</td>
+                    <td>{props.country.country}</td>
+
+                    <td>
+                        { !selected ? 
+                            <Button variant="success" onClick={() => addCity(true)}>Add</Button> :
+                            <Button variant="danger" onClick={() => addCity(false)}>Remove</Button>
+                        }
+                    </td>
+                </tr>
+
+            )
+        }
+
+        export default Country;
+
+#### `Country.css`
+
+        .selected-country{
+            background-color: darkgray;
+        }
+
+#### `Countries.js`
+
+        ...
+        import Table from 'react-bootstrap/Table'
+        import Country from "./Country.js"
+
+        function Countries() {
+            const [countries, setCountries] = useState([]);
+
+            ...
+
+            return (
+                <Table striped bordered hover>
+
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {/* 
+                        * с помощью map() нужно отрендерить полученный список.
+                        * на вход получаем список стране country и возвращаем => в формате jsx
+                        */}
+                        {countries.map(country => <Country key={country.city} country = {country}/>)};
+
+                    </tbody>
+
+                </Table>
+            )
+        }
+
+        export default Countries;
